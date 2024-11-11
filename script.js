@@ -71,6 +71,7 @@
 const buttons = document.querySelectorAll('button');
 const clearButton = document.querySelector('.clear-button');
 const deleteButton = document.querySelector('.delete-button');
+const equalsButton = document.querySelector('.equals-button')
 const output = document.querySelector('.output');
 let isAResult = false;
 let expression = ['', '', ''];
@@ -78,7 +79,9 @@ let operators = ['+', '-', '*', '/']
 
 function writeToOutput(event) {
     const key = event.target;
-    if (!Number.isInteger(key.textContent) && key.textContent != '.' && operators.includes(key.textContent) && expression[1].length == 0) {
+    const isOperatorAllowed = !Number.isInteger(key.textContent) && key.textContent != '.' && key.textContent != 'Clear' && key.textContent != 'Delete' && key.textContent != '=' && operators.includes(key.textContent) && expression[1].length == 0;
+    const isADigit = key.textContent != '=' && key.textContent != 'Clear' && key.textContent != 'Delete' && !operators.includes(key.textContent);
+    if (isOperatorAllowed) {
         expression[1] = key.textContent;
         key.style.cssText = 'background-color: rgba(128, 128, 128, 0.5);'
     } else if (key.textContent == '=') {
@@ -91,7 +94,6 @@ function writeToOutput(event) {
         });
         isAResult = true;
     } else {
-        let isADigit = key.textContent != '=' && key.textContent != 'Clear' && key.textContent != 'Delete' && !operators.includes(key.textContent);
         if (isADigit && expression[1]) {
             expression[2] += key.textContent;
             output.textContent = expression[2];
