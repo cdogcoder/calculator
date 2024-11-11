@@ -128,3 +128,12 @@ function getEvaluatedExpression(expression) {
     }
     return result;
 }
+
+function clearOutput() {
+    output.textContent = '';
+    expression = expression.map((item) => '');
+    buttons.forEach((button) => {
+        button.style.backgroundColor = ''; 
+    });
+    isAResult = false;
+}
