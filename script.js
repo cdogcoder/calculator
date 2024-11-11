@@ -70,6 +70,7 @@
 
 const buttons = document.querySelectorAll('button');
 const clearButton = document.querySelector('.clear-button');
+const deleteButton = document.querySelector('.delete-button');
 const output = document.querySelector('.output');
 let isAResult = false;
 let expression = ['', '', ''];
@@ -156,3 +157,5 @@ function deleteFromOutput() {
         expression[0] = output.textContent;
     }
 }
+
+deleteButton.addEventListener('click', deleteFromOutput);
