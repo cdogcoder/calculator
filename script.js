@@ -66,3 +66,33 @@
 //    (Ctrl+C should be for the 'Clear' button and Ctrl+D for the 'Delete' button)
 //    and call the appropriate function for that key press as the program would for
 //    its corresponding button click.
+
+const buttons = document.querySelectorAll('button');
+const output = document.querySelector('.output-container');
+let expression = ['', '', ''];
+let operators = ['+', '-', '*', '/']
+
+function writeToOutput(event) {
+    const key = event.target;
+    if (!Number.isInteger(key.textContent) && key.textContent != '.' && operators.includes(key.textContent) && expression[1].length == 0) {
+        expression[1] = key.textContent;
+        key.style.cssText = 'background-color: rgba(128, 128, 128, 0.5);'
+    }
+    else {
+        let condition = key.textContent != '=' && key.textContent != 'Clear' && key.textContent != 'Delete' && !operators.includes(key.textContent);
+        if (condition && expression[1]) {
+            expression[2] += key.textContent;
+            output.textContent = expression[2];
+        }
+        else if (condition) {
+            expression[0] += key.textContent;
+            output.textContent = expression[0];
+        }
+    }
+    
+    
+}
+
+buttons.forEach((button) => {
+    button.addEventListener('click', writeToOutput)
+})
