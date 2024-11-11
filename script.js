@@ -68,7 +68,7 @@
 //    its corresponding button click.
 
 const buttons = document.querySelectorAll('button');
-const output = document.querySelector('.output-container');
+const output = document.querySelector('.output');
 let expression = ['', '', ''];
 let operators = ['+', '-', '*', '/']
 
