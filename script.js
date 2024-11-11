@@ -84,15 +84,6 @@ function writeToOutput(event) {
     if (isOperatorAllowed) {
         expression[1] = key.textContent;
         key.style.cssText = 'background-color: rgba(128, 128, 128, 0.5);'
-    } else if (key.textContent == '=') {
-        let result = getEvaluatedExpression(expression);
-        output.textContent = result;
-        expression = expression.map((item) => '');
-        expression[0] = result;
-        buttons.forEach((button) => {
-            button.style.backgroundColor = ''; 
-        });
-        isAResult = true;
     } else {
         if (isADigit && expression[1]) {
             expression[2] += key.textContent;
@@ -161,3 +152,4 @@ function deleteFromOutput() {
 }
 
 deleteButton.addEventListener('click', deleteFromOutput);
+
