@@ -140,3 +140,19 @@ function clearOutput() {
 }
 
 clearButton.addEventListener('click', clearOutput);
+
+function deleteFromOutput() {
+    let newOutput = output.textContent.slice(0, output.textContent.length-1);
+    output.textContent = newOutput;
+    if (expression[0] && expression[1] && expression[2]) {
+        expression[2] = output.textContent;
+    } else if (expression[0] && expression[1]) {
+        expression[0] = output.textContent;
+        expression[1] = '';
+        buttons.forEach((button) => {
+            button.style.backgroundColor = ''; 
+        });
+    } else if (expression[0]) {
+        expression[0] = output.textContent;
+    }
+}
