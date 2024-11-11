@@ -36,10 +36,11 @@
 // 2. Write a function 'getEvaluatedExpression' that takes in a string/array
 //    type argument 'expression' and returns the value that comes from
 //    evaluating the expression. The function should be called every time the
-//    'equals' button is clicked or when a number button is clicked when two operands
+//    'equals' button is clicked or when an operator button is clicked when two operands
 //    and an operator exist in the variable 'expression' (or whatever will record the
-//    values the user inputs). The function should only return the value
-//    and must not be written to the output box from the function call alone
+//    values the user inputs) (the clicking of the operator button should evaluate the expression
+//    and write the resulting value as the first operand of a new calculation). The function 
+//    should only return the value and must not be written to the output box from the function call alone
 //    (if the function call to 'getEvaluatedExpression' happens as the 'equals'
 //    button is pressed, the function 'writeToOutput' should be written such that
 //    it displays the value; in other words, the function 'getEvaluatedExpression'
