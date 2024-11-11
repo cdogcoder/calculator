@@ -89,18 +89,18 @@ function writeToOutput(event) {
         });
         isAResult = true;
     } else {
-        let condition = key.textContent != '=' && key.textContent != 'Clear' && key.textContent != 'Delete' && !operators.includes(key.textContent);
-        if (condition && expression[1]) {
+        let isADigit = key.textContent != '=' && key.textContent != 'Clear' && key.textContent != 'Delete' && !operators.includes(key.textContent);
+        if (isADigit && expression[1]) {
             expression[2] += key.textContent;
             output.textContent = expression[2];
         }
-        else if (condition && isAResult) {
+        else if (isADigit && isAResult) {
             isAResult = false;
             expression[0] = '';
             expression[0] += key.textContent;
             output.textContent = expression[0];
         }
-        else if (condition) {
+        else if (isADigit) {
             expression[0] += key.textContent;
             output.textContent = expression[0];
         }
