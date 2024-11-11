@@ -77,8 +77,15 @@ function writeToOutput(event) {
     if (!Number.isInteger(key.textContent) && key.textContent != '.' && operators.includes(key.textContent) && expression[1].length == 0) {
         expression[1] = key.textContent;
         key.style.cssText = 'background-color: rgba(128, 128, 128, 0.5);'
-    }
-    else {
+    } else if (key.textContent == '=') {
+        let result = getEvaluatedExpression(expression);
+        output.textContent = result;
+        expression = expression.map((item) => '');
+        expression[0] = result;
+        buttons.forEach((button) => {
+            button.style.backgroundColor = ''; 
+        })
+    } else {
         let condition = key.textContent != '=' && key.textContent != 'Clear' && key.textContent != 'Delete' && !operators.includes(key.textContent);
         if (condition && expression[1]) {
             expression[2] += key.textContent;
@@ -88,11 +95,27 @@ function writeToOutput(event) {
             expression[0] += key.textContent;
             output.textContent = expression[0];
         }
-    }
-    
-    
+    }  
+    console.log(expression);
 }
 
 buttons.forEach((button) => {
     button.addEventListener('click', writeToOutput)
 })
+
+function getEvaluatedExpression(expression) {
+    let firstOperand = expression[0];
+    let operator = expression[1];
+    let secondOperand = expression[2];
+    let result;
+    if (operator == '+') {
+        result = +firstOperand + +secondOperand;
+    } else if (operator == '-') {
+        result = +firstOperand - +secondOperand;
+    } else if (operator == '*') {
+        result = +firstOperand * +secondOperand;
+    } else {
+        result = +firstOperand / +secondOperand;
+    }
+    return result;
+}
