@@ -1,1 +1,3 @@
 # calculator
+
+Hey guys! This is the last project that I will be doing for the Foundations course in the Odin Project curriculum! The project is going to be a calculator with a graphical user interface. It's going to be a cumulative project of all the skills I have learned so far. Everything from HTML basics, to CSS styling and Flexbox, to JavaScript DOM manipulation and events will be featured somehow some way in this project (with the addition of other good coding practices like pseudocode, early commits, and using the DevTools resources to debug or test features). With that said, thank you for viewing this repo!
