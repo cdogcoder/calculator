@@ -153,3 +153,14 @@ function deleteFromOutput() {
 
 deleteButton.addEventListener('click', deleteFromOutput);
 
+function evaluateToOutput() {
+    let result = getEvaluatedExpression(expression);
+    output.textContent = result;
+    expression = expression.map((item) => '');
+    expression[0] = result;
+    buttons.forEach((button) => {
+        button.style.backgroundColor = ''; 
+    });
+    isAResult = true;
+}
+
