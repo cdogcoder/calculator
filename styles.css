@@ -59,6 +59,7 @@ button:active {
     cursor: grabbing;
 }
 
-button.clear-button {
-    flex-basis: 100%;
+
+button.clear-button, button.delete-button {
+    flex-basis: 200px;
 }
