@@ -70,6 +70,7 @@
 
 const buttons = document.querySelectorAll('button');
 const output = document.querySelector('.output');
+let isAResult = false;
 let expression = ['', '', ''];
 let operators = ['+', '-', '*', '/']
 
@@ -85,12 +86,19 @@ function writeToOutput(event) {
         expression[0] = result;
         buttons.forEach((button) => {
             button.style.backgroundColor = ''; 
-        })
+        });
+        isAResult = true;
     } else {
         let condition = key.textContent != '=' && key.textContent != 'Clear' && key.textContent != 'Delete' && !operators.includes(key.textContent);
         if (condition && expression[1]) {
             expression[2] += key.textContent;
             output.textContent = expression[2];
+        }
+        else if (condition && isAResult) {
+            isAResult = false;
+            expression[0] = '';
+            expression[0] += key.textContent;
+            output.textContent = expression[0];
         }
         else if (condition) {
             expression[0] += key.textContent;
