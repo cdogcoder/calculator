@@ -119,7 +119,7 @@ function getEvaluatedExpression(expression) {
     } else if (operator == '*') {
         result = +firstOperand * +secondOperand;
     } else {
-        result = +firstOperand / +secondOperand;
+        result = Math.round(+firstOperand / +secondOperand * 10000) / 10000;
     }
     return result;
 }
@@ -164,3 +164,4 @@ function evaluateToOutput() {
     isAResult = true;
 }
 
+equalsButton.addEventListener('click', evaluateToOutput);
