@@ -69,6 +69,7 @@
 //    its corresponding button click.
 
 const buttons = document.querySelectorAll('button');
+const clearButton = document.querySelector('.clear-button');
 const output = document.querySelector('.output');
 let isAResult = false;
 let expression = ['', '', ''];
@@ -137,3 +138,5 @@ function clearOutput() {
     });
     isAResult = false;
 }
+
+clearButton.addEventListener('click', clearOutput);
