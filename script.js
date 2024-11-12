@@ -86,7 +86,13 @@ function writeToOutput(event) {
         key.style.cssText = 'background-color: rgba(128, 128, 128, 0.5);'
     } else {
         if (isADigit && expression[1]) {
-            expression[2] += key.textContent;
+            if (key.textContent == '.') {
+                if (!expression[2].includes('.')) {
+                    expression[2] += key.textContent;
+                }
+            } else {
+                expression[2] += key.textContent;
+            }
             output.textContent = expression[2];
         }
         else if (isADigit && isAResult) {
@@ -96,7 +102,13 @@ function writeToOutput(event) {
             output.textContent = expression[0];
         }
         else if (isADigit) {
-            expression[0] += key.textContent;
+            if (key.textContent == '.') {
+                if (!expression[0].includes('.')) {
+                    expression[0] += key.textContent;
+                }
+            } else {
+                expression[0] += key.textContent;
+            }
             output.textContent = expression[0];
         }
     }  
