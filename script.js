@@ -180,7 +180,7 @@ deleteButton.addEventListener('click', deleteFromOutput);
 function evaluateToOutput() {
     if (expression[0] && expression[1] && expression[2]) {
         let result = getEvaluatedExpression(expression);
-        if (Number.isNaN(result)) {
+        if (Number.isNaN(result) || !isFinite(result)) {
             result = 'Error';
         }
         output.textContent = result;
