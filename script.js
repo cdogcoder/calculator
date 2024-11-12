@@ -165,3 +165,23 @@ function evaluateToOutput() {
 }
 
 equalsButton.addEventListener('click', evaluateToOutput);
+
+document.body.addEventListener('keydown', (event) => {
+    let keyEvent = {target: {textContent: event.key}};
+    let key = keyEvent.target.textContent;
+    if (Number.isInteger(+key) || key == '.') {
+        writeToOutput(keyEvent);
+    } else if (key == 'c' && event.ctrlKey) {
+        clearOutput();
+    } else if (key == 'Backspace') {
+        deleteFromOutput();
+    } else if (key == 'Enter') {
+        evaluateToOutput();
+    } else if (expression[0] && operators.includes(key) && expression[1].length == 0) {
+        expression[1] = key;
+        key = Array.from(buttons).find((button) => {
+            return button.textContent == expression[1]
+        })
+        key.style.cssText = 'background-color: rgba(128, 128, 128, 0.5);';
+    }
+})
