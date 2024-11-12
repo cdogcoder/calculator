@@ -154,6 +154,9 @@ deleteButton.addEventListener('click', deleteFromOutput);
 
 function evaluateToOutput() {
     let result = getEvaluatedExpression(expression);
+    if (Number.isNaN(result)) {
+        result = 'Error';
+    }
     output.textContent = result;
     expression = expression.map((item) => '');
     expression[0] = result;
