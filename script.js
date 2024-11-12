@@ -123,7 +123,6 @@ function writeToOutput(event) {
             output.textContent = expression[0];
         }
     }  
-    console.log(expression)
 }
 
 buttons.forEach((button) => {
@@ -207,11 +206,26 @@ document.body.addEventListener('keydown', (event) => {
         deleteFromOutput();
     } else if (key == 'Enter') {
         evaluateToOutput();
-    } else if (expression[0] && operators.includes(key) && expression[1].length == 0) {
-        expression[1] = key;
-        key = Array.from(buttons).find((button) => {
-            return button.textContent == expression[1]
-        })
-        key.style.cssText = 'background-color: rgba(128, 128, 128, 0.5);';
+    } else if (expression[0] && operators.includes(key)) {
+        if (expression[1].length == 0) {
+            expression[1] = key;
+            key = Array.from(buttons).find((button) => {
+                return button.textContent == expression[1]
+            })
+            key.style.cssText = 'background-color: rgba(128, 128, 128, 0.5);';
+        } else {
+            buttons.forEach((button) => {
+                button.style.backgroundColor = ''; 
+            });
+            expression[0] = getEvaluatedExpression(expression);
+            expression[1] = key;
+            expression[2] = '';
+            output.textContent = expression[0];
+            key = Array.from(buttons).find((button) => {
+                return button.textContent == expression[1]
+            })
+            key.style.cssText = 'background-color: rgba(128, 128, 128, 0.5);';
+        }
+            
     }
 })
