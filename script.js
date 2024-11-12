@@ -79,11 +79,22 @@ let operators = ['+', '-', '*', '/']
 
 function writeToOutput(event) {
     const key = event.target;
-    const isOperatorAllowed = !Number.isInteger(key.textContent) && key.textContent != '.' && key.textContent != 'Clear' && key.textContent != 'Delete' && key.textContent != '=' && expression[0] && operators.includes(key.textContent) && expression[1].length == 0;
+    const isOperatorAllowed = !Number.isInteger(key.textContent) && key.textContent != '.' && key.textContent != 'Clear' && key.textContent != 'Delete' && key.textContent != '=' && expression[0] && operators.includes(key.textContent);
     const isADigit = key.textContent != '=' && key.textContent != 'Clear' && key.textContent != 'Delete' && !operators.includes(key.textContent);
     if (isOperatorAllowed) {
-        expression[1] = key.textContent;
-        key.style.cssText = 'background-color: rgba(128, 128, 128, 0.5);'
+        if (expression[1].length == 0) {
+            expression[1] = key.textContent;
+            key.style.cssText = 'background-color: rgba(128, 128, 128, 0.5);';    
+        } else {
+            buttons.forEach((button) => {
+                button.style.backgroundColor = ''; 
+            });
+            expression[0] = getEvaluatedExpression(expression);
+            expression[1] = key.textContent;
+            expression[2] = '';
+            output.textContent = expression[0];
+            key.style.cssText = 'background-color: rgba(128, 128, 128, 0.5);';    
+        }
     } else {
         if (isADigit && expression[1]) {
             if (key.textContent == '.') {
@@ -112,6 +123,7 @@ function writeToOutput(event) {
             output.textContent = expression[0];
         }
     }  
+    console.log(expression)
 }
 
 buttons.forEach((button) => {
