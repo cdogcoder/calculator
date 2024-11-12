@@ -79,7 +79,7 @@ let operators = ['+', '-', '*', '/']
 
 function writeToOutput(event) {
     const key = event.target;
-    const isOperatorAllowed = !Number.isInteger(key.textContent) && key.textContent != '.' && key.textContent != 'Clear' && key.textContent != 'Delete' && key.textContent != '=' && operators.includes(key.textContent) && expression[1].length == 0;
+    const isOperatorAllowed = !Number.isInteger(key.textContent) && key.textContent != '.' && key.textContent != 'Clear' && key.textContent != 'Delete' && key.textContent != '=' && expression[0] && operators.includes(key.textContent) && expression[1].length == 0;
     const isADigit = key.textContent != '=' && key.textContent != 'Clear' && key.textContent != 'Delete' && !operators.includes(key.textContent);
     if (isOperatorAllowed) {
         expression[1] = key.textContent;
@@ -100,7 +100,6 @@ function writeToOutput(event) {
             output.textContent = expression[0];
         }
     }  
-    console.log(expression);
 }
 
 buttons.forEach((button) => {
