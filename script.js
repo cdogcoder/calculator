@@ -155,17 +155,19 @@ function deleteFromOutput() {
 deleteButton.addEventListener('click', deleteFromOutput);
 
 function evaluateToOutput() {
-    let result = getEvaluatedExpression(expression);
-    if (Number.isNaN(result)) {
-        result = 'Error';
+    if (expression[0] && expression[1] && expression[2]) {
+        let result = getEvaluatedExpression(expression);
+        if (Number.isNaN(result)) {
+            result = 'Error';
+        }
+        output.textContent = result;
+        expression = expression.map((item) => '');
+        expression[0] = result;
+        buttons.forEach((button) => {
+            button.style.backgroundColor = ''; 
+        });
+        isAResult = true;
     }
-    output.textContent = result;
-    expression = expression.map((item) => '');
-    expression[0] = result;
-    buttons.forEach((button) => {
-        button.style.backgroundColor = ''; 
-    });
-    isAResult = true;
 }
 
 equalsButton.addEventListener('click', evaluateToOutput);
