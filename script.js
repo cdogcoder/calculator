@@ -108,8 +108,10 @@ buttons.forEach((button) => {
 
 function getEvaluatedExpression(expression) {
     let firstOperand = expression[0];
+    if (firstOperand == '.') firstOperand = '0';
     let operator = expression[1];
     let secondOperand = expression[2];
+    if (secondOperand == '.') secondOperand = '0';
     let result;
     if (operator == '+') {
         result = +firstOperand + +secondOperand;
